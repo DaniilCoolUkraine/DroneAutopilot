@@ -2,7 +2,7 @@
 
 namespace DroneAutopilot.InputReader
 {
-    public class UpForceCalculator : ISingleInputCalculator
+    public class UpInputCalculator : ISingleInputCalculator
     {
         public int Calculate()
         {

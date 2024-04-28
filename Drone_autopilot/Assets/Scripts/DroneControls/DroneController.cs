@@ -1,6 +1,5 @@
 using System;
 using DroneAutopilot.DroneVisuals;
-using DroneAutopilot.InputReader;
 using UnityEngine;
 
 namespace DroneAutopilot.DroneControls
@@ -9,48 +8,28 @@ namespace DroneAutopilot.DroneControls
     {
         [SerializeField] private ScrewSpeedController[] _droneScrews;
         [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private DroneInputController _droneInputController;
 
-        private ISingleInputCalculator _upForceCalculator;
-        private ISingleInputCalculator _downForceCalculator;
-        private IVectorInputCalculator _directionCalculator;
-        
-        private void Start()
+        private void Awake()
         {
-            Init();
+            _droneInputController.Init();
         }
 
-        public void Init(ISingleInputCalculator upForceCalculator, ISingleInputCalculator downForceCalculator,
-            IVectorInputCalculator directionCalculator)
+        private void Update()
         {
-            _upForceCalculator = upForceCalculator;
-            _downForceCalculator = downForceCalculator;
-            _directionCalculator = directionCalculator;
-        }
-
-        public void Init()
-        {
-            _upForceCalculator = new UpForceCalculator();
-            _downForceCalculator = new DownForceCalculator();
-            _directionCalculator = new MovementDirectionCalculator();
+            Debug.Log($"[{nameof(DroneController)}] TopRightRps: {_droneInputController.TopRightRps}");
+            Debug.Log($"[{nameof(DroneController)}] TopLeftRps: {_droneInputController.TopLeftRps}");
+            Debug.Log($"[{nameof(DroneController)}] BottomLeftRps: {_droneInputController.BottomLeftRps}");
+            Debug.Log($"[{nameof(DroneController)}] BottomRightRps: {_droneInputController.BottomRightRps}");
+            
+            _droneScrews[0].RotateScrew(_droneInputController.TopRightRps);
+            _droneScrews[1].RotateScrew(_droneInputController.TopLeftRps);
+            _droneScrews[2].RotateScrew(_droneInputController.BottomLeftRps);
+            _droneScrews[3].RotateScrew(_droneInputController.BottomRightRps);
         }
 
         private void FixedUpdate()
         {
-            int upForceInput = _upForceCalculator.Calculate();
-            int downForceInput = _downForceCalculator.Calculate();
-
-            Vector2 direction = _directionCalculator.Calculate();
-
-            if (upForceInput > downForceInput)
-            {
-                //push up
-                // _rigidbody.AddForce();
-            }
-            else if (upForceInput < downForceInput)
-            {
-                //push down
-            }
-            
             
         }
     }

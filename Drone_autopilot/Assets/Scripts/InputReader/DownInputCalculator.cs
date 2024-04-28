@@ -2,7 +2,7 @@
 
 namespace DroneAutopilot.InputReader
 {
-    public class DownForceCalculator : ISingleInputCalculator
+    public class DownInputCalculator : ISingleInputCalculator
     {
         public int Calculate()
         {
