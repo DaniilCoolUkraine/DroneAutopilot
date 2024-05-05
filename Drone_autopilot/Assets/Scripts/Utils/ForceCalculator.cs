@@ -3,26 +3,26 @@ using DroneAutopilot.General;
 
 namespace DroneAutopilot.Utils
 {
-    public class ForceCalculator
+    public class ForceCalculator : IForceCalculator
     {
         public float RpsToForce(float rotation)
         {
             if (rotation == Constants.IDLE_SPEED)
             {
-                return 9.81f;
+                return Constants.IDLE_FORCE;
             }
 
             if (rotation == Constants.UP_SPEED)
             {
-                return 10f;
+                return Constants.UP_FORCE;
             }
 
             if (rotation == Constants.DOWN_SPEED)
             {
-                return 9.6f;
+                return Constants.DOWN_FORCE;
             }
             
-            throw new NotImplementedException();
+            throw new NotImplementedException("Unknown speed");
         }
     }
 }

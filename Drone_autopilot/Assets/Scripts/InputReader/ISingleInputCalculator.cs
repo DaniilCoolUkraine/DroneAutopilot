@@ -2,6 +2,6 @@
 {
     public interface ISingleInputCalculator
     {
-        public int Calculate();
+        public bool Calculate();
     }
 }

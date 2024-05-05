@@ -1068,8 +1068,7 @@ GameObject:
   - component: {fileID: 2043304408}
   - component: {fileID: 2043304406}
   - component: {fileID: 2043304407}
-  - component: {fileID: 2043304410}
-  - component: {fileID: 2043304411}
+  - component: {fileID: 2043304412}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -1106,13 +1105,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e272b9b52e28942b385b6d0bee3e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 2043304408}
   _droneScrews:
   - {fileID: 1942763607}
   - {fileID: 2003336224}
   - {fileID: 1693814875}
   - {fileID: 901045138}
-  _rigidbody: {fileID: 2043304408}
-  _droneInputController: {fileID: 2043304407}
+  _inputController: {fileID: 2043304407}
+  _forceController: {fileID: 2043304412}
 --- !u!114 &2043304407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,42 +1173,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.25, y: 0.75, z: 1.25}
   m_Center: {x: 0, y: 0.17114526, z: 0}
---- !u!114 &2043304410
+--- !u!114 &2043304412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043304404}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e1560400e024ee89c78c25087af5258, type: 3}
+  m_Script: {fileID: 11500000, guid: 8af2c10d00a34aee9f18742e7984b903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 2043304408}
-  _screws:
-  - {fileID: 1942763604}
-  - {fileID: 2003336221}
-  - {fileID: 1693814872}
-  - {fileID: 901045135}
-  _force: 3
-  _forceMode: 0
-  _forcesCoef: 1
---- !u!114 &2043304411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043304404}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6f1491812ad4d72b6a803cfaa1caa38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 2043304408}
-  _force: 9.81
-  _forceMode: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
