@@ -12,7 +12,22 @@ namespace DroneAutopilot.General
                 action.Invoke(element);
             }
         }
-        
-        // public static float 
+
+        public static bool ToBool(this int num)
+        {
+            return num > 0;
+        }
+
+        public static bool[] ToBool(this int[] nums)
+        {
+            bool[] result = new bool[nums.Length];
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                result[i] = nums[i].ToBool();
+            }
+
+            return result;
+        }
     }
 }

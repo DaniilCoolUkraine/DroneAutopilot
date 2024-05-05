@@ -1,7 +1,7 @@
-using System;
+using DroneAutopilot.AI;
+using DroneAutopilot.AI.InputSubstitution;
 using DroneAutopilot.DroneVisuals;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace DroneAutopilot.DroneControls
 {
@@ -13,9 +13,25 @@ namespace DroneAutopilot.DroneControls
         [SerializeField] private DroneInputController _inputController;
         [SerializeField] private DroneForceController _forceController;
 
+        [SerializeField] private DroneAgent _droneAgent;
+
         private void Awake()
         {
-            _inputController.Init();
+            if (_droneAgent is null)
+            {
+                _inputController.Init();
+            }
+            else
+            {
+                var topRightInputCalculator = new AiInputCalculator();
+                var bottomRightInputCalculator = new AiInputCalculator();
+                var topLeftInputCalculator = new AiInputCalculator();
+                var bottomLeftInputCalculator = new AiInputCalculator();
+                
+                _inputController.Init(topRightInputCalculator, bottomRightInputCalculator, topLeftInputCalculator, bottomLeftInputCalculator);
+                _droneAgent.Init(topRightInputCalculator, bottomRightInputCalculator, topLeftInputCalculator, bottomLeftInputCalculator);
+            }
+            
             _forceController.Init(_rigidbody);
         }
 
