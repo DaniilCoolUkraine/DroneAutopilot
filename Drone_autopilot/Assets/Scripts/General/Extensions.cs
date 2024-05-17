@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace DroneAutopilot.General
 {
@@ -28,6 +29,26 @@ namespace DroneAutopilot.General
             }
 
             return result;
+        }
+
+        public static bool VectorsApproximatelyEquals(this Vector3 me, Vector3 vector, float similarity)
+        {
+            if (Math.Abs(me.x - vector.x) > similarity)
+            {
+                return false;
+            }
+
+            if (Math.Abs(me.y - vector.y) > similarity)
+            {
+                return false;
+            }
+            
+            if (Math.Abs(me.z - vector.z) > similarity)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

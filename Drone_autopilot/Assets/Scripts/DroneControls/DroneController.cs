@@ -1,3 +1,4 @@
+using System;
 using DroneAutopilot.AI;
 using DroneAutopilot.AI.InputSubstitution;
 using DroneAutopilot.DroneVisuals;
@@ -41,6 +42,10 @@ namespace DroneAutopilot.DroneControls
             _droneScrews[1].RotateScrew(_inputController.TopLeftRps);
             _droneScrews[2].RotateScrew(_inputController.BottomLeftRps);
             _droneScrews[3].RotateScrew(_inputController.BottomRightRps);
+
+            _droneAgent.AddRewardForGettingCloserToTarget();
+            _droneAgent.AddRewardForGettingHigher();
+            _droneAgent.AddRewardForStayingUp();
         }
 
         private void FixedUpdate()
@@ -50,6 +55,14 @@ namespace DroneAutopilot.DroneControls
             // _forceController.AddForceToScrew(_droneScrews[2].transform, _inputController.BottomRightRps);
             _forceController.AddForceToScrew(_droneScrews[2].transform, _inputController.BottomLeftRps);
             _forceController.AddForceToScrew(_droneScrews[3].transform, _inputController.BottomRightRps);
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.TryGetComponent<Ground>(out var ground))
+            {
+                _droneAgent.SubtractRewardForCollidingWithObstacle(ground.GetReward);
+            }
         }
     }
 }
